@@ -9,14 +9,28 @@
     <link rel="stylesheet" href="reset.css">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
-    <title>Document</title>
+    <title>Giphy!</title>
 </head>
 
 <body>
 
+    <div id="animeButtons">
+        <!-- <button data-anime="animeGifs"></button> -->
+    </div>
 
-    <script src=https://api.giphy.com/v1/gifs/search?q=topic+here&api_key=i6vOozTBU9UJ1TI9engqSoOHiHyrH9dt></script>
+    <form id="giphySearch">
+        <label for="giphy-input">Search an anime..</label>
+        <input type="text" id="anime-input"><br>
+
+        <input id="addAnime" type="submit" value="Submit">
+    </form>
+
+    <div id="anime"></div>
+
+
+    <script src=https://api.giphy.com/v1/gifs/search?q=&api_key=i6vOozTBU9UJ1TI9engqSoOHiHyrH9dt></script>
     <script src="http://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>
