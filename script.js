@@ -41,11 +41,11 @@ $(document).ready(function () {
                 var rating = results[i].rating
                 var gifRating = $("<p>").text("Rating: " + rating.toUpperCase())
                 animeDiv.append(gifRating)
-                var image = $("<img>").attr("src", stillGif);
-                image.attr("playsrc", playGif);
-                image.attr("stopsrc", stillGif);
+                var image = $("<img class='myImage' data-state='still'>").attr("src", stillGif);
+                image.attr("data-playsrc", playGif);
+                image.attr("data-stopsrc", stillGif);
                 animeDiv.append(image);
-                $('#anime').append(animeDiv);
+                $('#anime').prepend(animeDiv);
                 image.addClass("playChosenGif");
             }
         })
@@ -58,6 +58,23 @@ $(document).ready(function () {
         animeGifs.push(animeInput)
         renderButtons()
     })
+
+    //on click still and animate gif images
+
+        $(document).on("click", '.myImage', function () {
+            var state = $(this).attr("data-state")
+
+            if (state === "still") {
+                $(this).attr("src", $(this).attr("data-playsrc"));
+                $(this).attr("data-state", "animate");
+
+
+            } else {
+                $(this).attr("src", $(this).attr("data-stopsrc"));
+                $(this).attr("data-state", "still");
+            }
+        })
+
 
 
 
