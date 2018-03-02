@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    //array of existing buttons
+    //array for static buttons 
     var animeGifs = [
         "soul eater",
         "fullmetal alchemist",
@@ -13,59 +13,69 @@ $(document).ready(function () {
         "dragon ball"
     ]
 
+    //create buttons for existing array
     function renderButtons() {
         $("#animeButtons").empty()
         for (var i = 0; i < animeGifs.length; i++) {
-            var newBTN = $("<button class='statBTN' data-name=''"+animeGifs[i]+"'>"+animeGifs[i]+"</button>")
+            var newBTN = $("<button class='statBTN' data-name='" + animeGifs[i] + "'>" + animeGifs[i] + "</button>")
             $("#animeButtons").append(newBTN)
-            var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + animeGifs[i] + "&api_key=i6vOozTBU9UJ1TI9engqSoOHiHyrH9dt"
 
             console.log(newBTN)
         }
     }
 
+    //pull results on button click
+    $(document).on('click', '.statBTN', function () {
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + $(this).attr('data-name') + "&api_key=i6vOozTBU9UJ1TI9engqSoOHiHyrH9dt&limit=5"
+        console.log(this)
+        $.ajax({
+            url: queryURL,
+            method: 'GET',
+        }).then(function (response) {
+            var animeDiv = $("<div class='animeImg'></div>")
+            var results = response.data
+            console.log(results)
+            for (var i = 0; i < results.length; i++) {
+                var stillGif = results[i].images.fixed_width_still.url
+                var playGif = results[i].images.fixed_width.url
+                var rating = results[i].rating
+                var gifRating = $("<p>").text("Rating: " + rating.toUpperCase())
+                animeDiv.append(gifRating)
+                var image = $("<img>").attr("src", stillGif);
+                image.attr("playsrc", playGif);
+                image.attr("stopsrc", stillGif);
+                animeDiv.append(image);
+                $('#anime').append(animeDiv);
+                image.addClass("playChosenGif");
+            }
+        })
 
-    //api variable
+    })
+    //create a new button to search from
     $("#addAnime").on("click", function () {
         event.preventDefault()
-        var animeInput = $("#anime-input").val()
+        var animeInput = $("#anime-input").val().trim()
         animeGifs.push(animeInput)
         renderButtons()
-        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + animeInput + "&api_key=i6vOozTBU9UJ1TI9engqSoOHiHyrH9dt&limit=5"
-        console.log(animeInput)
+    })
+
+
+
+
+    //display gif images
+
+    function displayGifs() {
+        $("#anime").empty()
+
+        var animeGifButtons = $(this).attr("data-anime")
 
         $.ajax({
             url: queryURL,
             method: 'GET'
         }).then(function (response) {
-            // var imageURL = response.data.image_original_url
-            // var animeImg = $("<img>")
-            // animeImg.attr("src", imageUrl)
-            // animeImg.attr("alt", "anime gif")
-            // $("#anime".prepend(animeImg))
-            console.log(response)
-            // $("#animeButtons").text(JSON.stringify(response))
+
         })
-
-
-
-    })
-
-    // text input functionality to create a new button when submit is pressed
-
-    //still & animate gif on click
-    // $("#anime").on("click", function () {
-    //     var state = $(this).attr("data-state")
-
-    //     if (state === "still") {
-    //         $(this).attr("src", $(this).attr("data-animate"));
-    //         $(this).attr("data-state", "animate");
-
-    //     } else {
-    //         $(this).attr("src", $(this).attr("data-still"));
-    //         $(this).attr("data-state", "still");
-    //     }
-    // })
+    }
 
     renderButtons()
 
