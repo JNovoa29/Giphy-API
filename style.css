@@ -1,0 +1,49 @@
+/* header */
+
+.jumbotron {
+    background-image: url("../giphy-api/images/headerimg.png");
+    padding: 90px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.header {
+    font-family: 'Bangers', cursive;
+    font-size: 100px;
+    color: white;
+    text-shadow: 3px 3px rgb(87, 87, 87);
+    text-align: left;
+}
+
+/* .bracket {
+    font-family: 'Bangers', cursive;
+    font-size: 90px;
+    color: black;
+    text-shadow: 3px 3px white;
+    text-align: left;
+} */
+
+.statBTN {
+    border-width: 6px black;
+    border-radius: 7px white;
+    margin: 3px;
+    color: white;
+    background: black;
+}
+
+#anime-input {
+    border: 1.5px solid black;
+}
+
+#addAnime {
+    border-width: 6px black;
+    border-radius: 7px white;
+    margin: 3px; 
+    color: white;
+    background: black;
+}
+
+label {
+    font-family: 'Bangers', cursive; 
+    font-size: 22px;
+}
