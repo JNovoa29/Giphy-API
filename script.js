@@ -26,7 +26,8 @@ $(document).ready(function () {
 
     //pull results on button click
     $(document).on('click', '.statBTN', function () {
-        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + $(this).attr('data-name') + "&api_key=i6vOozTBU9UJ1TI9engqSoOHiHyrH9dt&limit=5"
+        $("#anime").empty()
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + $(this).attr('data-name') + "&api_key=i6vOozTBU9UJ1TI9engqSoOHiHyrH9dt&limit=8"
         console.log(this)
         $.ajax({
             url: queryURL,
