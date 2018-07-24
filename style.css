@@ -1,7 +1,7 @@
 /* header */
 
 .jumbotron {
-    background-image: url("../giphy-api/images/headerimg.png");
+    background-image: url("./images/headerimg.png");
     padding: 90px;
     background-repeat: no-repeat;
     background-size: cover;
